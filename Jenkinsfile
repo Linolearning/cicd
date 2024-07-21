@@ -13,7 +13,6 @@ pipeline {
             steps {
                 sh '''
                     cd databricks-terraform
-                    echo "init completed successfully"
                     terraform init
                 '''
             }
@@ -21,13 +20,27 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                sh '''
-                    echo "plan completed successfully"
-                    pwd
                     cd databricks-terraform
                     terraform plan
                 '''
             }
         }
+        stage('Approval') {
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'Proceed1', message: 'Approve or Abort?', parameters: [
+                        [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve to proceed', name: 'Proceed']
+                    ])
+                    if (userInput) {
+                        echo "User approved"
+                    } else {
+                        error "Aborted by user"
+                    }
+                }
+            }
+        }
+        
         // stage('Terraform Apply') {
         //     steps {
         //         script {

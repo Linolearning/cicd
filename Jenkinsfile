@@ -15,13 +15,15 @@ pipeline {
                     sh 'cd databricks-terraform'
                     sh 'terraform init'
                     sh 'echo "completed successfully"'
+                    sh 'pwd'
                 }
             }
         }
         stage('Terraform Plan') {
             steps {
-                dir('databricks-terraform') 
                 script {
+                    sh 'pwd'
+                    sh 'cd databricks-terraform'
                     sh 'terraform plan'
                 }
             }

@@ -25,28 +25,19 @@ pipeline {
                 '''
             }
         }
-        stage('Approval') {
-            steps {
-                script {
+    
+        stage('Terraform Apply') {
+            when {
+                expression {
                     def userInput = input(
-                        id: 'Proceed1', message: 'Approve or Abort?', parameters: [
-                        [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve to proceed', name: 'Proceed']
+                        id: 'Proceed2', message: 'Final Approval to Apply?', parameters: [
+                        [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve to apply', name: 'ProceedApply']
                     ])
-                    if (userInput) {
-                        echo "User approved"
-                    } else {
-                        error "Aborted by user"
-                    }
+                    return userInput
                 }
             }
-        }
-        
-        // stage('Terraform Apply') {
-        //     steps {
-        //         script {
-        //             sh 'terraform apply -auto-approve'
-        //         }
-        //     }
-        // }
-    }
+            steps {
+                    sh 'terraform apply '
+            }
+}
 }

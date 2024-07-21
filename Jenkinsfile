@@ -11,22 +11,19 @@ pipeline {
         }
         stage('Terraform Init') {
             steps {
-                script {
-                    sh 'cd databricks-terraform'
-                    sh 'terraform init'
-                    sh 'echo "init completed successfully"'
-                    sh 'pwd'
-                }
+                sh '''
+                    cd databricks-terraform
+                    echo "init completed successfully"
+                    terraform init
+                '''
             }
         }
         stage('Terraform Plan') {
             steps {
-                script {
-                    sh 'cd databricks-terraform'
-                    sh 'terraform plan'
-                    sh 'echo "plan completed successfully"'
-                    sh 'pwd'
-                }
+               sh '''
+                    echo "plan completed successfully"
+                    terraform plan
+                '''
             }
         }
         // stage('Terraform Apply') {

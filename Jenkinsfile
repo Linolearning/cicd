@@ -19,6 +19,7 @@ pipeline {
         }
         stage('Terraform Plan') {
             steps {
+                dir('databricks-terraform') 
                 script {
                     sh 'terraform plan'
                 }

@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        PATH = "/usr/local/bin:${env.PATH}"
         DATABRICKS_TOKEN = credentials('databricks-token')
     }
     stages {

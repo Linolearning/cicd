@@ -14,7 +14,7 @@ pipeline {
                 script {
                     sh 'cd databricks-terraform'
                     sh 'terraform init'
-                    sh 'echo "completed successfully"'
+                    sh 'echo "init completed successfully"'
                     sh 'pwd'
                 }
             }
@@ -22,9 +22,10 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    sh 'pwd'
                     sh 'cd databricks-terraform'
                     sh 'terraform plan'
+                    sh 'echo "plan completed successfully"'
+                    sh 'pwd'
                 }
             }
         }

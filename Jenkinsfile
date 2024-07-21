@@ -12,7 +12,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    dir('databricks-terraform')
+                    sh 'cd databricks-terraform'
                     sh 'terraform init'
                     sh 'echo "completed successfully"'
                 }

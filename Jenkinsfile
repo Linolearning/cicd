@@ -39,7 +39,7 @@ pipeline {
             steps {
                     sh '''
                     cd databricks-terraform
-                    terraform apply
+                    terraform apply -auto-approve
                     '''
             }
 }

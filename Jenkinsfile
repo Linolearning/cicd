@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                https://github.com/Linolearning/cicd.git
             }
         }
         stage('Terraform Init') {

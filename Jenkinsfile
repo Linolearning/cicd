@@ -37,7 +37,10 @@ pipeline {
                 }
             }
             steps {
-                    sh 'terraform apply '
+                    sh '''
+                    cd databricks-terraform
+                    terraform apply
+                    '''
             }
 }
 }

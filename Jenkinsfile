@@ -23,6 +23,7 @@ pipeline {
                sh '''
                     echo "plan completed successfully"
                     pwd
+                    cd databricks-terraform
                     terraform plan
                 '''
             }

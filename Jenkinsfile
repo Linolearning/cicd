@@ -14,6 +14,7 @@ pipeline {
                 dir('databricks-terraform') 
                 script {
                     sh 'terraform init'
+                    sh 'echo "completed successfully"'
                 }
             }
         }

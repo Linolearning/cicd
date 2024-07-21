@@ -22,6 +22,7 @@ pipeline {
             steps {
                sh '''
                     echo "plan completed successfully"
+                    pwd
                     terraform plan
                 '''
             }
